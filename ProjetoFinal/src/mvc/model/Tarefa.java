@@ -6,6 +6,8 @@ package mvc.model;
 import java.util.Calendar;
 import javax.validation.constraints.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Tarefa {
     private Long id;
     @NotNull(message="A descrição não pode ficar vazia")
@@ -13,6 +15,8 @@ public class Tarefa {
     private String descricao;
     private boolean finalizado;
     private Calendar dataFinalizacao;
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    
 
 
     public Long getId() {return id;}
