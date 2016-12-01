@@ -63,20 +63,5 @@ public class UsuarioDAO {
         return existe;
     }
     
-    public byte[] buscaFoto(String login) {
-    	byte[] imgData = null;
-        try {	
-            PreparedStatement stmt = connection.
-                                    prepareStatement("SELECT * FROM usuario WHERE Login=? ");
-            stmt.setString(1, login);
-            ResultSet rs = stmt.executeQuery();
-            if(rs.next()) {
-            	Blob image = rs.getBlob("foto");
-            	imgData = image.getBytes(1, (int) image.length());
-            }
-            rs.close();
-            stmt.close();
-        } catch(SQLException e) {System.out.println(e);}
-        return imgData;
+    
     }
-}

@@ -45,13 +45,7 @@ public class LoginController{
         session.invalidate();
         return "redirect:loginForm";
     }
-    @RequestMapping(value = "getImage", method = RequestMethod.GET)
-    public void showImage(@RequestParam("login") String login, HttpServletResponse response,HttpServletRequest request) 
-            throws ServletException, IOException{
-    	UsuarioDAO dao = new UsuarioDAO();
-    	response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-    	response.getOutputStream().write(dao.buscaFoto(login));
-    	response.getOutputStream().close();
-    }
+
+    
 }
 

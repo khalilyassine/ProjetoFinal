@@ -22,27 +22,16 @@ public class TarefasDAO {
 
     public void adicionaDescricao(Tarefa tarefa) {
         try {
-            String sql = "INSERT INTO Tarefa (descricao) values(?)";
+            String sql = "INSERT INTO Tarefa (usuario,descricao) values(?,?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1,tarefa.getDescricao());
+            stmt.setString(1, tarefa.getUsuario());
+            stmt.setString(2,tarefa.getDescricao());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {e.printStackTrace();}
     }
 
 
-    public void adiciona(Tarefa tarefa) {
-        try {
-            String sql = "INSERT INTO Tarefa" +
-                         "(descricao,finalizado,dataFinalizacao) values(?,?,?)";
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1,tarefa.getDescricao());
-            stmt.setBoolean(2, tarefa.isFinalizado());
-            stmt.setDate(3, new Date(tarefa.getDataFinalizacao().getTimeInMillis()));
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException e) {e.printStackTrace();}
-    }
 	
     public List<Tarefa> getLista() {
     	
@@ -54,14 +43,8 @@ public class TarefasDAO {
                while (rs.next()) {
                    Tarefa tarefa = new Tarefa();
                    tarefa.setId(rs.getLong("id"));
+                   tarefa.setUsuario(rs.getString("usuario"));
                    tarefa.setDescricao(rs.getString("descricao"));
-                   tarefa.setFinalizado(rs.getBoolean("finalizado"));
-                   Calendar data = Calendar.getInstance();
-                   Date dataFinalizacao = rs.getDate("dataFinalizacao");
-                   if(dataFinalizacao!=null) {		
-                       data.setTime(dataFinalizacao);
-                       tarefa.setDataFinalizacao(data);
-                   }
                    tarefas.add(tarefa);
                }
                rs.close();

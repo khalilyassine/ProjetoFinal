@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import mvc.model.Tarefa;
 import mvc.model.TarefasDAO;
+
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -25,15 +27,31 @@ public class TarefasController {
         model.addAttribute("tarefas", dao.getLista());
         return "formTarefa";
     }    
-    @RequestMapping("adicionaTarefa")
-    public String adiciona(@Valid Tarefa tarefa, BindingResult result) {
-    	if(result.hasErrors()) {
-    	    return "formTarefa";
-    	}
-    	TarefasDAO dao = new TarefasDAO();
-    	dao.adicionaDescricao(tarefa);
-        return "adicionada";
+    @RequestMapping("js")
+    public String jsform(Model model) {
+        TarefasDAO dao = new TarefasDAO();
+        model.addAttribute("tarefas", dao.getLista());
+        return "listamensagens";
     }
+    @RequestMapping("adicionaTarefa")
+    public String adiciona(@Valid Tarefa tarefa,HttpSession session, BindingResult result, Model model) {
+        TarefasDAO dao = new TarefasDAO();
+        System.out.println(tarefa.getDescricao());
+        model.addAttribute("tarefas", dao.getLista());
+        tarefa.setUsuario((String)session.getAttribute("usuarioLogado"));
+        System.out.println(session.getAttribute("usuarioLogado"));
+        dao.adicionaDescricao(tarefa);
+        dao.close();
+        return "redirect: telaChat";
+        
+    	}
+    @RequestMapping("telaChat")
+    public String teladeChat(Model model) {
+    	TarefasDAO dao = new TarefasDAO();
+    	model.addAttribute("tarefas", dao.getLista());
+    	return "formTarefa";
+    }
+
     @RequestMapping("listaTarefas")
     public String lista(Model model) {
         TarefasDAO dao = new TarefasDAO();

@@ -10,7 +10,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Tarefa {
     private Long id;
-    @NotNull(message="A descrição não pode ficar vazia")
+    private String usuario;
+    public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	@NotNull(message="A descrição não pode ficar vazia")
     @Size(min=5, message="A descrição deve conter ao menos 5 caracteres")
     private String descricao;
     private boolean finalizado;
