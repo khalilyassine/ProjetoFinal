@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Chat Insper</title>
 </head>
 <body>
-    <h2>Página inicial da Lista de Tarefas</h2>
+    <h2>Bem vindo ao ChatInsper</h2>
     <p>Bem vindo, ${usuarioLogado}</p>
-        <a href="listaTarefas">Clique aqui</a> para acessar a lista de tarefas
-		<a href="logout">Sair do sistema</a>
+        <a href="listaTarefas">Clique aqui</a> Para entrar no Chat
+		<a href="logout">Sair</a>
 		<img src="getImage?login=${usuarioLogado}" />
 		
 </body>

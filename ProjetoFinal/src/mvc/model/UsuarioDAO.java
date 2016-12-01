@@ -16,7 +16,7 @@ public class UsuarioDAO {
         try {
             Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/meus_dados", "root", "123456");
+                            "jdbc:mysql://localhost/meus_dados", "root", "190314");
         } catch (SQLException | ClassNotFoundException e) {e.printStackTrace();}
     }
 
@@ -48,8 +48,7 @@ public class UsuarioDAO {
     public boolean existeUsuario(Usuario usuario) {
         boolean existe = false;
     	try {	
-            PreparedStatement stmt = connection.
-            prepareStatement("SELECT COUNT(*) FROM usuario WHERE login=? AND senha=? LIMIT 1");
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM usuario WHERE Login=? AND senha=? LIMIT 1");
             stmt.setString(1, usuario.getLogin());
             stmt.setString(2, usuario.getSenha());
             ResultSet rs = stmt.executeQuery();
@@ -58,7 +57,9 @@ public class UsuarioDAO {
             }
             rs.close();
             stmt.close();
-        } catch(SQLException e) {System.out.println(e);}
+        } catch(SQLException e) {
+        	System.out.println("alo");
+        	System.out.println(e);}
         return existe;
     }
     
@@ -66,7 +67,7 @@ public class UsuarioDAO {
     	byte[] imgData = null;
         try {	
             PreparedStatement stmt = connection.
-                                    prepareStatement("SELECT * FROM usuario WHERE login=? ");
+                                    prepareStatement("SELECT * FROM usuario WHERE Login=? ");
             stmt.setString(1, login);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()) {
