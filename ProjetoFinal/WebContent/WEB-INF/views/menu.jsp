@@ -9,7 +9,7 @@
 <body>
     <h2>Bem vindo ao ChatInsper</h2>
     <p>Bem vindo, ${usuarioLogado}</p>
-        <a href="listaTarefas">Clique aqui</a> Para entrar no Chat
+        <a href="criaTarefa">Clique aqui</a> Para entrar no Chat
 		<a href="logout">Sair</a>
 		<img src="getImage?login=${usuarioLogado}" />
 		

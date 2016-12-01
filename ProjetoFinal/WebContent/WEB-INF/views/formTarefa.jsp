@@ -15,24 +15,16 @@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
     </form>
        <table>
       <tr>
-         <th>Id</th>
-         <th>Descrição</th>
-         <th>Finalizado</th>
-         <th>Data de finalização</th>
+         <th>Nome    			|</th>
+         <th>|           Mensagem</th>
       </tr>
       <c:forEach items="${tarefas}" var="tarefa">
          <tr>
   
-            <td>${tarefa.id}</td>
+            <td>${usuarioLogado}</td>
 		
             <td>${tarefa.descricao}</td>
-				
-            <c:if test="${tarefa.finalizado eq false}">
-               <td>Não finalizada</td>
-            </c:if>
-            <c:if test="${tarefa.finalizado eq true}">
-               <td>Finalizado</td>
-            </c:if>
+
 				
             <td>
                <fmt:formatDate value="${tarefa.dataFinalizacao.time}" pattern="dd/MM/yyyy"/>

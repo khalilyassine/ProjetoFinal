@@ -20,7 +20,9 @@ public class TarefasController {
         return "info";
     }
     @RequestMapping("criaTarefa")
-    public String form() {
+    public String form(Model model) {
+        TarefasDAO dao = new TarefasDAO();
+        model.addAttribute("tarefas", dao.getLista());
         return "formTarefa";
     }    
     @RequestMapping("adicionaTarefa")

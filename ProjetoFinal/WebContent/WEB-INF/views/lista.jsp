@@ -18,14 +18,9 @@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
   
             <td>${usuarioLogado} :   </td>
 		
-            <td>${tarefa.descricao}</td>
+            <td>${tarefa.mensagem}</td>
 				
-            <c:if test="${tarefa.finalizado eq false}">
-               <td>Não finalizada</td>
-            </c:if>
-            <c:if test="${tarefa.finalizado eq true}">
-               <td>Finalizado</td>
-            </c:if>
+ 
 				
             <td>
                <fmt:formatDate value="${tarefa.dataFinalizacao.time}" pattern="dd/MM/yyyy"/>
