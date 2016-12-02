@@ -7,18 +7,18 @@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>ChatInsper</title>
 </head>
 <body>
-  <table>
+  <table class="table">
       <tr>
-         <th>Nome    			|</th>
-         <th>|           Mensagem</th>
+         <th>Nome</th>
+         <th>Mensagem</th>
       </tr>
       <c:forEach items="${tarefas}" var="tarefa">
          <tr>
   
-            <td>${tarefa.usuario}</td>
+            <td>${tarefa.usuario}    </td>
 		
             <td>${tarefa.descricao}</td>
 

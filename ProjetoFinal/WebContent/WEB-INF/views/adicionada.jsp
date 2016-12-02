@@ -22,8 +22,8 @@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
     </form>
        <table>
       <tr>
-         <th>Nome    			|</th>
-         <th>|           Mensagem</th>
+         <th>Nome</th>
+         <th>Mensagem</th>
       </tr>
       <c:forEach items="${tarefas}" var="tarefa">
          <tr>

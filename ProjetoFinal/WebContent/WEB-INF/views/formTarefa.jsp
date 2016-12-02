@@ -22,12 +22,14 @@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 </head>
 <body>
 
-    <h3>ChatInsper</h3>
+<div class="container">
+  <h2>ChatInsper</h2>
+  </div>
     <form action="adicionaTarefa" method="post">
     	Escreva sua mensagem: <br />
     	<textarea name="descricao" rows="6" cols="80"></textarea><br />
     	<form:errors path="tarefa.descricao" cssStyle="color:red"/><br/>
-    	<input type="submit" value="Adicionar">
+    	<input type="submit" value="Enviar">
     </form>
      	<div id="refresh"></div>
    <script>

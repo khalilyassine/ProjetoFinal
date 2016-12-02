@@ -24,7 +24,6 @@ public class TarefasController {
     @RequestMapping("criaTarefa")
     public String form(Model model) {
         TarefasDAO dao = new TarefasDAO();
-        model.addAttribute("tarefas", dao.getLista());
         return "formTarefa";
     }    
     @RequestMapping("js")
@@ -35,7 +34,10 @@ public class TarefasController {
     }
     @RequestMapping("adicionaTarefa")
     public String adiciona(@Valid Tarefa tarefa,HttpSession session, BindingResult result, Model model) {
-        TarefasDAO dao = new TarefasDAO();
+    	if(result.hasErrors()) {
+    	    return "formTarefa";
+    	}
+    	TarefasDAO dao = new TarefasDAO();
         System.out.println(tarefa.getDescricao());
         model.addAttribute("tarefas", dao.getLista());
         tarefa.setUsuario((String)session.getAttribute("usuarioLogado"));
@@ -58,22 +60,5 @@ public class TarefasController {
         model.addAttribute("tarefas", dao.getLista());
         return "lista";
     }
-    @RequestMapping("removeTarefa")
-    public String remove(Tarefa tarefa) {
-        TarefasDAO dao = new TarefasDAO();
-        dao.remove(tarefa);
-        return "redirect:listaTarefas";
-    }
-    @RequestMapping("mostraTarefa")
-    public String mostra(Long id, Model model) {
-        TarefasDAO dao = new TarefasDAO();
-        model.addAttribute("tarefa", dao.buscaPorId(id));
-        return "mostra";
-    }
-    @RequestMapping("alteraTarefa")
-    public String altera(Tarefa tarefa) {
-           TarefasDAO dao = new TarefasDAO();
-           dao.altera(tarefa);
-           return "redirect:listaTarefas";
-    }
+
 }

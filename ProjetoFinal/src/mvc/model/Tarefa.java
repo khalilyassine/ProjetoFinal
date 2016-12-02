@@ -9,6 +9,10 @@ import javax.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Tarefa {
+	@NotNull(message="A descrição não pode ficar vazia")
+    @Size(min=1, message="A descrição deve conter ao menos 1 caracter")
+    private String descricao;
+
     private Long id;
     private String usuario;
     public String getUsuario() {
@@ -17,12 +21,7 @@ public class Tarefa {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	@NotNull(message="A descrição não pode ficar vazia")
-    @Size(min=5, message="A descrição deve conter ao menos 5 caracteres")
-    private String descricao;
-    private boolean finalizado;
-    private Calendar dataFinalizacao;
-    @DateTimeFormat(pattern="dd/MM/yyyy")
+
     
 
 
@@ -30,9 +29,6 @@ public class Tarefa {
     public void setId(Long id) {this.id = id;}
     public String getDescricao() {return descricao;}
     public void setDescricao(String descricao) {this.descricao = descricao;}
-    public boolean isFinalizado() {return finalizado;}
-    public void setFinalizado(boolean finalizado) {this.finalizado = finalizado;}
-    public Calendar getDataFinalizacao() {return dataFinalizacao;}
-    public void setDataFinalizacao(Calendar dataFinal) {this.dataFinalizacao = dataFinal;}
+
     
 }

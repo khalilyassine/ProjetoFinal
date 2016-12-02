@@ -22,7 +22,6 @@ public class UsuarioDAO {
 
 
     public void adiciona (Usuario usuario) throws IOException {
-    	MultipartFile filePart = usuario.getFoto();
     	/* Rotina para salvar o arquivo no servidor
     	if (!filePart.isEmpty()) {
     	    String fileName = filePart.getOriginalFilename();
@@ -38,7 +37,6 @@ public class UsuarioDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1,usuario.getLogin());
             stmt.setString(2,usuario.getSenha());
-            stmt.setBinaryStream(3, filePart.getInputStream());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {e.printStackTrace();}
